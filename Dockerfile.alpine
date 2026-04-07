@@ -6,7 +6,11 @@ FROM caddy:${CADDY_VERSION}-builder-alpine AS builder
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
     --with github.com/WeidiDeng/caddy-cloudflare-ip \
-    --with github.com/fvbommel/caddy-combine-ip-ranges
+    --with github.com/fvbommel/caddy-combine-ip-ranges \
+    --with github.com/mholt/caddy-l4 \
+    --with github.com/mholt/caddy-l4/modules/l4tls \
+    --with github.com/mholt/caddy-l4/modules/l4proxyprotocol \
+    --with github.com/mholt/caddy-ratelimit
 
 # Final stage
 FROM caddy:${CADDY_VERSION}-alpine
